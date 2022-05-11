@@ -1,0 +1,48 @@
+From 02eeef2eeee889a30d34f7d08905d9bb67c1c650 Mon Sep 17 00:00:00 2001
+From: Minh Nguyen <minhh2792.work@gmail.com>
+Date: Wed, 11 May 2022 15:56:31 +0000
+Subject: [PATCH] Clean up messages
+
+
+diff --git a/src/main/java/net/minecraft/server/DedicatedServer.java b/src/main/java/net/minecraft/server/DedicatedServer.java
+index 6776099a7..fc0883a52 100644
+--- a/src/main/java/net/minecraft/server/DedicatedServer.java
++++ b/src/main/java/net/minecraft/server/DedicatedServer.java
+@@ -211,9 +211,9 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
+             try {
+                 this.an().a(inetaddress, this.P());
+             } catch (IOException ioexception) {
+-                DedicatedServer.LOGGER.warn("**** FAILED TO BIND TO PORT!");
+-                DedicatedServer.LOGGER.warn("The exception was: {}", ioexception.toString());
+-                DedicatedServer.LOGGER.warn("Perhaps a server is already running on that port?");
++                DedicatedServer.LOGGER.warn("FAILED TO BIND TO PORT!");
++                // DedicatedServer.LOGGER.warn("The exception was: {}", ioexception.toString());
++                // DedicatedServer.LOGGER.warn("Perhaps a server is already running on that port?");
+                 return false;
+             }
+         }
+@@ -225,7 +225,8 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
+             // CraftBukkit end
+ 
+             if (!this.getOnlineMode()) {
+-                DedicatedServer.LOGGER.warn("**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
++                DedicatedServer.LOGGER.warn("SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
++                /*
+                 DedicatedServer.LOGGER.warn("The server will make no attempt to authenticate usernames. Beware.");
+                 // Spigot start
+                 if (org.spigotmc.SpigotConfig.bungee) {
+@@ -233,9 +234,10 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
+                     DedicatedServer.LOGGER.warn("Please see http://www.spigotmc.org/wiki/firewall-guide/ for further information.");
+                 } else {
+                     DedicatedServer.LOGGER.warn("While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.");
+-                }
++                } 
+                 // Spigot end
+                 DedicatedServer.LOGGER.warn("To change this, set \"online-mode\" to \"true\" in the server.properties file.");
++                */
+             }
+ 
+             if (this.aS()) {
+-- 
+2.35.1
+
