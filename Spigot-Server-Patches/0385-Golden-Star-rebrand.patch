@@ -1,4 +1,4 @@
-From b3c5b6eb765cf82c4a1f1a4a7da019b4c3934520 Mon Sep 17 00:00:00 2001
+From 594178c69f320677c7f90fc29bf601f6fc372444 Mon Sep 17 00:00:00 2001
 From: Minh Nguyen <minhh2792.work@gmail.com>
 Date: Wed, 11 May 2022 15:42:31 +0000
 Subject: [PATCH] Golden Star rebrand
@@ -17,6 +17,19 @@ index d60021747..372993814 100644
                      <scmDirectory>..</scmDirectory>
                  </configuration>
                  <executions>
+diff --git a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java b/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
+index 116d1b3bf..f7aa1e73e 100644
+--- a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
++++ b/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
+@@ -17,7 +17,7 @@ public final class PaperConsole extends SimpleTerminalConsole {
+     @Override
+     protected LineReader buildReader(LineReaderBuilder builder) {
+         return super.buildReader(builder
+-                .appName("Paper")
++                .appName("GoldenStar")
+                 .completer(new ConsoleCommandCompleter(this.server))
+         );
+     }
 diff --git a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
 index 674096cab..dadf95cf1 100644
 --- a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
