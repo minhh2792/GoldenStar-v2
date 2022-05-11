@@ -24,9 +24,8 @@ jobs:
         run: |
           git config --global user.email "no-reply@github.com"
           git config --global user.name "Github Actions"
-          ./paper patch 
           ./paper jar
       - uses: actions/upload-artifact@v2
         with:
           name: Paper Launcher
-          path: paperclip.jar
+          path: /paperclip.jar
