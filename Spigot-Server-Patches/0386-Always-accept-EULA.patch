@@ -1,0 +1,21 @@
+From d8f2bcc44313850ce23985a6248d31effe05e6fb Mon Sep 17 00:00:00 2001
+From: Minh Nguyen <minhh2792.work@gmail.com>
+Date: Wed, 11 May 2022 15:53:23 +0000
+Subject: [PATCH] Always accept EULA
+
+
+diff --git a/src/main/java/net/minecraft/server/DedicatedServer.java b/src/main/java/net/minecraft/server/DedicatedServer.java
+index 6a8292ce4..6776099a7 100644
+--- a/src/main/java/net/minecraft/server/DedicatedServer.java
++++ b/src/main/java/net/minecraft/server/DedicatedServer.java
+@@ -149,6 +149,7 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
+             System.err.println( "By using this setting you are indicating your agreement to Mojang's EULA (https://account.mojang.com/documents/minecraft_eula)." );
+             System.err.println( "If you do not agree to the above EULA please stop your server and remove this flag immediately." );
+         }
++        eulaAgreed = true;
+         // Spigot End
+         if (!this.r.a() && !eulaAgreed) { // Spigot
+             DedicatedServer.LOGGER.info("You need to agree to the EULA in order to run the server. Go to eula.txt for more info.");
+-- 
+2.35.1
+
