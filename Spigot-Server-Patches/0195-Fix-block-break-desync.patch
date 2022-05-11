@@ -1,0 +1,22 @@
+From 2dfe55a46580b8454ab4dc20d6132abd138c12b8 Mon Sep 17 00:00:00 2001
+From: Michael Himing <mhiming@gmail.com>
+Date: Sun, 8 Jan 2017 18:50:35 +1100
+Subject: [PATCH] Fix block break desync
+
+
+diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
+index 25fe67e18..87f191c19 100644
+--- a/src/main/java/net/minecraft/server/PlayerConnection.java
++++ b/src/main/java/net/minecraft/server/PlayerConnection.java
+@@ -870,6 +870,8 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+             double d3 = d0 * d0 + d1 * d1 + d2 * d2;
+ 
+             if (d3 > 36.0D) {
++                if (worldserver.isChunkLoaded(blockposition.getX() >> 4, blockposition.getZ() >> 4, true)) // Paper - Fix block break desync - Don't send for unloaded chunks
++                    this.sendPacket(new PacketPlayOutBlockChange(worldserver, blockposition)); // Paper - Fix block break desync
+                 return;
+             } else if (blockposition.getY() >= this.minecraftServer.getMaxBuildHeight()) {
+                 return;
+-- 
+2.35.1
+
