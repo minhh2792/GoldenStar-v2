@@ -1,0 +1,69 @@
+From 0eb6d3cdc91eb4c261fa9c484a7012010161c545 Mon Sep 17 00:00:00 2001
+From: Minh Nguyen <minhh2792.work@gmail.com>
+Date: Thu, 12 May 2022 03:31:09 +0000
+Subject: [PATCH] Projectile offset configs
+
+
+diff --git a/src/main/java/com/destroystokyo/paper/PaperConfig.java b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+index 3d6e09907..c2a984e51 100644
+--- a/src/main/java/com/destroystokyo/paper/PaperConfig.java
++++ b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+@@ -328,4 +328,16 @@ public class PaperConfig {
+             maxBookTotalSizeMultiplier = 0.98D;
+         }
+     }
++
++    public static double bowProjectileOffset = 1.0D;
++    public static double enderPearlProjectileOffset = 1.0D;
++    public static double eggProjectileOffset = 1.0D;
++    public static double snowballProjectileOffset = 1.0D;
++    private static void projectileOffset() {
++        bowProjectileOffset = getDouble("projectile-offset.bow", bowProjectileOffset);
++        enderPearlProjectileOffset = getDouble("projectile-offset.ender-pearl", enderPearlProjectileOffset);
++        eggProjectileOffset = getDouble("projectile-offset.egg", eggProjectileOffset);
++        snowballProjectileOffset = getDouble("projectile-offset.snowball", snowballProjectileOffset);
++    }
++
+ }
+diff --git a/src/main/java/net/minecraft/server/ItemBow.java b/src/main/java/net/minecraft/server/ItemBow.java
+index 44e7be58e..284d02a46 100644
+--- a/src/main/java/net/minecraft/server/ItemBow.java
++++ b/src/main/java/net/minecraft/server/ItemBow.java
+@@ -67,7 +67,7 @@ public class ItemBow extends Item {
+                         ItemArrow itemarrow = (ItemArrow) ((ItemArrow) (itemstack1.getItem() instanceof ItemArrow ? itemstack1.getItem() : Items.ARROW));
+                         EntityArrow entityarrow = itemarrow.a(world, itemstack1, (EntityLiving) entityhuman);
+ 
+-                        entityarrow.a(entityhuman, entityhuman.pitch, entityhuman.yaw, 0.0F, f * 3.0F, 1.0F);
++                        entityarrow.a(entityhuman, entityhuman.pitch, entityhuman.yaw, 0.0F, f * 3.0F, (float) com.destroystokyo.paper.PaperConfig.bowProjectileOffset);
+                         if (f == 1.0F) {
+                             entityarrow.setCritical(true);
+                         }
+diff --git a/src/main/java/net/minecraft/server/ItemEnderPearl.java b/src/main/java/net/minecraft/server/ItemEnderPearl.java
+index a0bf985da..3bea047f3 100644
+--- a/src/main/java/net/minecraft/server/ItemEnderPearl.java
++++ b/src/main/java/net/minecraft/server/ItemEnderPearl.java
+@@ -14,7 +14,7 @@ public class ItemEnderPearl extends Item {
+         if (!world.isClientSide) {
+             EntityEnderPearl entityenderpearl = new EntityEnderPearl(world, entityhuman);
+ 
+-            entityenderpearl.a(entityhuman, entityhuman.pitch, entityhuman.yaw, 0.0F, 1.5F, 1.0F);
++            entityenderpearl.a(entityhuman, entityhuman.pitch, entityhuman.yaw, 0.0F, 1.5F, (float) com.destroystokyo.paper.PaperConfig.enderPearlProjectileOffset);
+             if (!world.addEntity(entityenderpearl)) {
+                 if (entityhuman instanceof EntityPlayer) {
+                     ((EntityPlayer) entityhuman).getBukkitEntity().updateInventory();
+diff --git a/src/main/java/net/minecraft/server/ItemSnowball.java b/src/main/java/net/minecraft/server/ItemSnowball.java
+index 2e73c93aa..dce34fe42 100644
+--- a/src/main/java/net/minecraft/server/ItemSnowball.java
++++ b/src/main/java/net/minecraft/server/ItemSnowball.java
+@@ -21,7 +21,7 @@ public class ItemSnowball extends Item {
+         if (!world.isClientSide) {
+             EntitySnowball entitysnowball = new EntitySnowball(world, entityhuman);
+ 
+-            entitysnowball.a(entityhuman, entityhuman.pitch, entityhuman.yaw, 0.0F, 1.5F, 1.0F);
++            entitysnowball.a(entityhuman, entityhuman.pitch, entityhuman.yaw, 0.0F, 1.5F, (float) com.destroystokyo.paper.PaperConfig.snowballProjectileOffset);
+             if (world.addEntity(entitysnowball)) {
+                 if (!entityhuman.abilities.canInstantlyBuild) {
+                     itemstack.subtract(1);
+-- 
+2.35.1
+
