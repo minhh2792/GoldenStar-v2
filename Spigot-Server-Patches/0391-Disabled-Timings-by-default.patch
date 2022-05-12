@@ -1,0 +1,25 @@
+From 4a0b62345da82e198b2574afd1c777e7516f00a9 Mon Sep 17 00:00:00 2001
+From: Minh Nguyen <minhh2792.work@gmail.com>
+Date: Thu, 12 May 2022 16:22:51 +0000
+Subject: [PATCH] Disabled Timings by default
+
+
+diff --git a/src/main/java/com/destroystokyo/paper/PaperConfig.java b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+index e50e5037a..9e1584b40 100644
+--- a/src/main/java/com/destroystokyo/paper/PaperConfig.java
++++ b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+@@ -174,6 +174,11 @@ public class PaperConfig {
+ 
+     private static void timings() {
+         boolean timings = getBoolean("timings.enabled", true);
++        boolean reallyEnableTimings = getBoolean("timings.really-enabled", false);
++        if (timings && !reallyEnableTimings) {
++            Bukkit.getLogger().log(Level.INFO, "[GoldenStar] Disabled Timings by default");
++        }
++        timings = reallyEnableTimings;
+         boolean verboseTimings = getBoolean("timings.verbose", true);
+         TimingsManager.privacy = getBoolean("timings.server-name-privacy", false);
+         TimingsManager.hiddenConfigs = getList("timings.hidden-config-entries", Lists.newArrayList("database", "settings.bungeecord-addresses"));
+-- 
+2.35.1
+
