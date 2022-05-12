@@ -1,11 +1,11 @@
-From cecbae31d08b4fd506ab1d10a55dc7e37f75206b Mon Sep 17 00:00:00 2001
+From 715aefebb09c2e08a1dd08c39e9037d268c46129 Mon Sep 17 00:00:00 2001
 From: Minh Nguyen <minhh2792.work@gmail.com>
 Date: Thu, 12 May 2022 04:01:26 +0000
 Subject: [PATCH] trogiup command
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperCommand.java b/src/main/java/com/destroystokyo/paper/PaperCommand.java
-index 1898ab897..7ff41c341 100644
+index 1898ab897..750ee2cc5 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperCommand.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperCommand.java
 @@ -25,14 +25,14 @@ public class PaperCommand extends Command {
@@ -33,8 +33,8 @@ index 1898ab897..7ff41c341 100644
 +                sender.sendMessage("");
 +                sender.sendMessage("§e§lTrợ giúp");
 +                sender.sendMessage("");
-+                sender.sendMessage("§b/call <người chơi>: &fYêu cầu Police kiểm tra người chơi nghi vấn");
-+                sender.sendMessage("§b/leave: &fThoát phòng chơi hiện tại");
++                sender.sendMessage("§b/call <người chơi>: §fYêu cầu Police kiểm tra người chơi nghi vấn");
++                sender.sendMessage("§b/leave: §fThoát phòng chơi hiện tại");
 +                sender.sendMessage("");
 +                break;
              default:
