@@ -1,0 +1,270 @@
+From e15a36bbac748099df6d9528b992b3e0d39e4441 Mon Sep 17 00:00:00 2001
+From: Minh Nguyen <minhh2792.work@gmail.com>
+Date: Thu, 12 May 2022 16:18:42 +0000
+Subject: [PATCH] Pre-tweak config files
+
+
+diff --git a/src/main/java/com/destroystokyo/paper/PaperConfig.java b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+index c2a984e51..e50e5037a 100644
+--- a/src/main/java/com/destroystokyo/paper/PaperConfig.java
++++ b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+@@ -29,16 +29,7 @@ import org.spigotmc.WatchdogThread;
+ public class PaperConfig {
+ 
+     private static File CONFIG_FILE;
+-    private static final String HEADER = "This is the main configuration file for Paper.\n"
+-            + "As you can see, there's tons to configure. Some options may impact gameplay, so use\n"
+-            + "with caution, and make sure you know what each option does before configuring.\n"
+-            + "\n"
+-            + "If you need help with the configuration or have any questions related to Paper,\n"
+-            + "join us in our IRC channel.\n"
+-            + "\n"
+-            + "IRC: #paper @ irc.spi.gt ( http://irc.spi.gt/iris/?channels=paper )\n"
+-            + "Wiki: https://paper.readthedocs.org/ \n"
+-            + "Paper Forums: https://aquifermc.org/ \n";
++    private static final String HEADER = "This is the main configuration file for Paper.\n";
+     /*========================================================================*/
+     public static YamlConfiguration config;
+     static int version;
+diff --git a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
+index 897bb49b4..6a02141f0 100644
+--- a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
++++ b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
+@@ -149,8 +149,8 @@ public class PaperWorldConfig {
+ 
+     public boolean disableEndCredits;
+     private void disableEndCredits() {
+-        disableEndCredits = getBoolean("game-mechanics.disable-end-credits", false);
+-        log("End credits disabled: " + disableEndCredits);
++        disableEndCredits = getBoolean("game-mechanics.disable-end-credits", true);
++        // log("End credits disabled: " + disableEndCredits);
+     }
+ 
+     public boolean generateCanyon;
+@@ -185,8 +185,8 @@ public class PaperWorldConfig {
+ 
+     public boolean optimizeExplosions;
+     private void optimizeExplosions() {
+-        optimizeExplosions = getBoolean("optimize-explosions", false);
+-        log("Optimize explosions: " + optimizeExplosions);
++        optimizeExplosions = getBoolean("optimize-explosions", true);
++        // log("Optimize explosions: " + optimizeExplosions);
+     }
+ 
+     public boolean fastDrainLava;
+@@ -397,7 +397,7 @@ public class PaperWorldConfig {
+ 
+     public boolean removeCorruptTEs = false;
+     private void removeCorruptTEs() {
+-        removeCorruptTEs = getBoolean("remove-corrupt-tile-entities", false);
++        removeCorruptTEs = getBoolean("remove-corrupt-tile-entities", true);
+     }
+ 
+     public boolean filterNBTFromSpawnEgg = true;
+@@ -431,7 +431,7 @@ public class PaperWorldConfig {
+ 
+     public boolean parrotsHangOnBetter;
+     private void parrotsHangOnBetter() {
+-        parrotsHangOnBetter = getBoolean("parrots-are-unaffected-by-player-movement", false);
++        parrotsHangOnBetter = getBoolean("parrots-are-unaffected-by-player-movement", true);
+         log("Parrots are unaffected by player movement: " + parrotsHangOnBetter);
+     }
+ 
+diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
+index f6fe613af..2e69a7d44 100644
+--- a/src/main/java/org/spigotmc/SpigotConfig.java
++++ b/src/main/java/org/spigotmc/SpigotConfig.java
+@@ -32,17 +32,7 @@ public class SpigotConfig
+ {
+ 
+     private static File CONFIG_FILE;
+-    private static final String HEADER = "This is the main configuration file for Spigot.\n"
+-            + "As you can see, there's tons to configure. Some options may impact gameplay, so use\n"
+-            + "with caution, and make sure you know what each option does before configuring.\n"
+-            + "For a reference for any variable inside this file, check out the Spigot wiki at\n"
+-            + "http://www.spigotmc.org/wiki/spigot-configuration/\n"
+-            + "\n"
+-            + "If you need help with the configuration or have any questions related to Spigot,\n"
+-            + "join us at the IRC or drop by our forums and leave a post.\n"
+-            + "\n"
+-            + "IRC: #spigot @ irc.spi.gt ( http://www.spigotmc.org/pages/irc/ )\n"
+-            + "Forums: http://www.spigotmc.org/\n";
++    private static final String HEADER = "This is the main configuration file for Spigot.\n";
+     /*========================================================================*/
+     public static YamlConfiguration config;
+     static int version;
+@@ -189,8 +179,8 @@ public class SpigotConfig
+     public static String whitelistMessage;
+     public static String unknownCommandMessage;
+     public static String serverFullMessage;
+-    public static String outdatedClientMessage = "Outdated client! Please use {0}";
+-    public static String outdatedServerMessage = "Outdated server! I\'m still on {0}";
++    public static String outdatedClientMessage = "Vui lòng sử dụng {0}";
++    public static String outdatedServerMessage = "Vui lòng sử dụng {0}";
+     private static String transform(String s)
+     {
+         return ChatColor.translateAlternateColorCodes( '&', s ).replaceAll( "\\\\n", "\n" );
+@@ -203,9 +193,9 @@ public class SpigotConfig
+             set( "messages.outdated-server", outdatedServerMessage );
+         }
+ 
+-        whitelistMessage = transform( getString( "messages.whitelist", "You are not whitelisted on this server!" ) );
+-        unknownCommandMessage = transform( getString( "messages.unknown-command", "Unknown command. Type \"/help\" for help." ) );
+-        serverFullMessage = transform( getString( "messages.server-full", "The server is full!" ) );
++        whitelistMessage = transform( getString( "messages.whitelist", "Bạn không có quyền vào phòng!" ) );
++        unknownCommandMessage = transform( getString( "messages.unknown-command", "Không có lệnh này. Gõ \"/help\" để được trợ giúp." ) );
++        serverFullMessage = transform( getString( "messages.server-full", "Phòng chơi đã đầy!" ) );
+         outdatedClientMessage = transform( getString( "messages.outdated-client", outdatedClientMessage ) );
+         outdatedServerMessage = transform( getString( "messages.outdated-server", outdatedServerMessage ) );
+     }
+@@ -238,7 +228,7 @@ public class SpigotConfig
+     {
+         int count = getInt( "settings.netty-threads", 4 );
+         System.setProperty( "io.netty.eventLoopThreads", Integer.toString( count ) );
+-        Bukkit.getLogger().log( Level.INFO, "Using {0} threads for Netty based IO", count );
++        // Bukkit.getLogger().log( Level.INFO, "Using {0} threads for Netty based IO", count );
+     }
+ 
+     public static boolean lateBind;
+@@ -263,7 +253,7 @@ public class SpigotConfig
+             {
+                 if ( StatisticList.getStatistic(name) == null )
+                 {
+-                    Bukkit.getLogger().log(Level.WARNING, "Ignoring non existent stats.forced-stats " + name);
++                    // Bukkit.getLogger().log(Level.WARNING, "Ignoring non existent stats.forced-stats " + name);
+                     continue;
+                 }
+                 forcedStats.put( name, section.getInt( name ) );
+@@ -280,7 +270,7 @@ public class SpigotConfig
+     private static void playerSample()
+     {
+         playerSample = Math.max(getInt( "settings.sample-count", 12 ), 0); // Paper - Avoid negative counts
+-        Bukkit.getLogger().log( Level.INFO, "Server Ping Player Sample Count: {0}", playerSample ); // Paper - Use logger
++        // Bukkit.getLogger().log( Level.INFO, "Server Ping Player Sample Count: {0}", playerSample ); // Paper - Use logger
+     }
+ 
+     public static int playerShuffle;
+diff --git a/src/main/resources/configurations/bukkit.yml b/src/main/resources/configurations/bukkit.yml
+index 67ea88a4c..6a862bfcf 100644
+--- a/src/main/resources/configurations/bukkit.yml
++++ b/src/main/resources/configurations/bukkit.yml
+@@ -1,27 +1,13 @@
+-# This is the main configuration file for Bukkit.
+-# As you can see, there's actually not that much to configure without any plugins.
+-# For a reference for any variable inside this file, check out the Bukkit Wiki at
+-# http://wiki.bukkit.org/Bukkit.yml
+-# 
+-# If you need help on this file, feel free to join us on irc or leave a message
+-# on the forums asking for advice.
+-# 
+-# IRC: #spigot @ irc.spi.gt
+-#    (If this means nothing to you, just go to http://www.spigotmc.org/pages/irc/ )
+-# Forums: http://www.spigotmc.org/
+-# Bug tracker: http://www.spigotmc.org/go/bugs
+-
+-
+ settings:
+-    allow-end: true
++    allow-end: false
+     warn-on-overload: true
+     permissions-file: permissions.yml
+     update-folder: update
+     plugin-profiling: false
+     connection-throttle: 4000
+-    query-plugins: true
++    query-plugins: false
+     deprecated-verbose: default
+-    shutdown-message: Server closed
++    shutdown-message: Server đã đóng do hết trận hoặc gặp trục trặc
+ spawn-limits:
+     monsters: 70
+     animals: 15
+diff --git a/src/main/resources/configurations/commands.yml b/src/main/resources/configurations/commands.yml
+index 0491a8bbe..689e8f340 100644
+--- a/src/main/resources/configurations/commands.yml
++++ b/src/main/resources/configurations/commands.yml
+@@ -1,17 +1,7 @@
+-# This is the commands configuration file for Bukkit.
+-# For documentation on how to make use of this file, check out the Bukkit Wiki at
+-# http://wiki.bukkit.org/Commands.yml
+-# 
+-# If you need help on this file, feel free to join us on irc or leave a message
+-# on the forums asking for advice.
+-# 
+-# IRC: #spigot @ irc.spi.gt
+-#    (If this means nothing to you, just go to http://www.spigotmc.org/pages/irc/ )
+-# Forums: http://www.spigotmc.org/
+-# Bug tracker: http://www.spigotmc.org/go/bugs
+-
+ command-block-overrides: []
+ unrestricted-advancements: false
+ aliases:
+-    icanhasbukkit:
+-      - "version $1-"
++    help:
++      - "paper trogiup"
++    trogiup:
++      - "paper trogiup"
+diff --git a/src/main/resources/configurations/help.yml b/src/main/resources/configurations/help.yml
+index 15c3d0707..e69de29bb 100644
+--- a/src/main/resources/configurations/help.yml
++++ b/src/main/resources/configurations/help.yml
+@@ -1,55 +0,0 @@
+-# This is the help configuration file for Bukkit.
+-# 
+-# By default you do not need to modify this file. Help topics for all plugin commands are automatically provided by
+-# or extracted from your installed plugins. You only need to modify this file if you wish to add new help pages to
+-# your server or override the help pages of existing plugin commands.
+-# 
+-# This file is divided up into the following parts:
+-# -- general-topics: lists admin defined help topics
+-# -- index-topics:   lists admin defined index topics
+-# -- amend-topics:   lists topic amendments to apply to existing help topics
+-# -- ignore-plugins: lists any plugins that should be excluded from help
+-# 
+-# Examples are given below. When amending command topic, the string <text> will be replaced with the existing value
+-# in the help topic. Color codes can be used in topic text. The color code character is & followed by 0-F.
+-# ================================================================
+-# 
+-# Set this to true to list the individual command help topics in the master help.
+-# command-topics-in-master-index: true
+-# 
+-# Each general topic will show up as a separate topic in the help index along with all the plugin command topics.
+-# general-topics:
+-#     Rules:
+-#         shortText: Rules of the server
+-#         fullText: |
+-#             &61. Be kind to your fellow players.
+-#             &B2. No griefing.
+-#             &D3. No swearing.
+-#         permission: topics.rules
+-# 
+-# Each index topic will show up as a separate sub-index in the help index along with all the plugin command topics.
+-# To override the default help index (displayed when the user executes /help), name the index topic "Default".
+-# index-topics:
+-#     Ban Commands:
+-#         shortText: Player banning commands
+-#         preamble: Moderator - do not abuse these commands
+-#         permission: op
+-#         commands:
+-#             - /ban
+-#             - /ban-ip
+-#             - /banlist
+-# 
+-# Topic amendments are used to change the content of automatically generated plugin command topics.
+-# amended-topics:
+-#     /stop:
+-#         shortText: Stops the server cold....in its tracks!
+-#         fullText: <text> - This kills the server.
+-#         permission: you.dont.have
+-# 
+-# Any plugin in the ignored plugins list will be excluded from help. The name must match the name displayed by
+-# the /plugins command. Ignore "Bukkit" to remove the standard bukkit commands from the index. Ignore "All"
+-# to completely disable automatic help topic generation.
+-# ignore-plugins:
+-#    - PluginNameOne
+-#    - PluginNameTwo
+-#    - PluginNameThree
+-- 
+2.35.1
+
