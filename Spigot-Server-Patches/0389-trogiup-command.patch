@@ -1,0 +1,45 @@
+From cecbae31d08b4fd506ab1d10a55dc7e37f75206b Mon Sep 17 00:00:00 2001
+From: Minh Nguyen <minhh2792.work@gmail.com>
+Date: Thu, 12 May 2022 04:01:26 +0000
+Subject: [PATCH] trogiup command
+
+
+diff --git a/src/main/java/com/destroystokyo/paper/PaperCommand.java b/src/main/java/com/destroystokyo/paper/PaperCommand.java
+index 1898ab897..7ff41c341 100644
+--- a/src/main/java/com/destroystokyo/paper/PaperCommand.java
++++ b/src/main/java/com/destroystokyo/paper/PaperCommand.java
+@@ -25,14 +25,14 @@ public class PaperCommand extends Command {
+     public PaperCommand(String name) {
+         super(name);
+         this.description = "Paper related commands";
+-        this.usageMessage = "/paper [heap | entity | reload | version]";
++        this.usageMessage = "/paper [heap | entity | reload | version | trogiup]";
+         this.setPermission("bukkit.command.paper");
+     }
+ 
+     @Override
+     public List<String> tabComplete(CommandSender sender, String alias, String[] args, Location location) throws IllegalArgumentException {
+         if (args.length <= 1)
+-            return CommandAbstract.getListMatchingLast(args, "heap", "entity", "reload", "version");
++            return CommandAbstract.getListMatchingLast(args, "heap", "entity", "reload", "version", "trogiup");
+ 
+         switch (args[0].toLowerCase(Locale.ENGLISH))
+         {
+@@ -69,6 +69,14 @@ public class PaperCommand extends Command {
+             case "version":
+                 org.bukkit.Bukkit.getServer().getCommandMap().getCommand("version").execute(sender, commandLabel, new String[0]);
+                 break;
++            case "trogiup":
++                sender.sendMessage("");
++                sender.sendMessage("§e§lTrợ giúp");
++                sender.sendMessage("");
++                sender.sendMessage("§b/call <người chơi>: &fYêu cầu Police kiểm tra người chơi nghi vấn");
++                sender.sendMessage("§b/leave: &fThoát phòng chơi hiện tại");
++                sender.sendMessage("");
++                break;
+             default:
+                 sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+                 return false;
+-- 
+2.35.1
+
