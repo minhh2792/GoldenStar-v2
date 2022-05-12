@@ -27,5 +27,5 @@ jobs:
           ./paper jar
       - uses: actions/upload-artifact@v2
         with:
-          name: Paper Launcher
-          path: paperclip.jar
+          name: GoldenStar Launcher
+          path: goldenstar-launcher.jar

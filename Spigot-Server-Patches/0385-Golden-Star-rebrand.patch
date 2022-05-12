@@ -1,4 +1,4 @@
-From 1211a09e4c987d915ecda8a6c28189c7103822ce Mon Sep 17 00:00:00 2001
+From 030b3f298cb1cef4d8683aea26eeef2a2bb43ab5 Mon Sep 17 00:00:00 2001
 From: Minh Nguyen <minhh2792.work@gmail.com>
 Date: Wed, 11 May 2022 15:42:31 +0000
 Subject: [PATCH] Golden Star rebrand
@@ -44,7 +44,7 @@ index 3b982f990..54a7166f8 100644
  
      public CrashReport b(CrashReport crashreport) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 7c82e18b9..dd86b051a 100644
+index 7c82e18b9..101629e6d 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -140,7 +140,7 @@ import javax.annotation.Nonnull; // Paper
@@ -52,7 +52,7 @@ index 7c82e18b9..dd86b051a 100644
  
  public final class CraftServer implements Server {
 -    private final String serverName = "Paper";
-+    private final String serverName = "MineVN Minigames";
++    private final String serverName = "GoldenStar";
      private final String serverVersion;
      private final String bukkitVersion = Versioning.getBukkitVersion();
      private final Logger logger = Logger.getLogger("Minecraft");
