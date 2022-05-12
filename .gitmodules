@@ -13,4 +13,3 @@
 [submodule "work/Paperclip"]
 	path = work/Paperclip
 	url = https://github.com/PaperMC/Paperclip.git
-	branch = master
