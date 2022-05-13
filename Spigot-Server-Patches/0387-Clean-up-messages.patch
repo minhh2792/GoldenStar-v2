@@ -1,4 +1,4 @@
-From 02eeef2eeee889a30d34f7d08905d9bb67c1c650 Mon Sep 17 00:00:00 2001
+From bb4e0decb31f01d5e64651e15068c5e61abca7e0 Mon Sep 17 00:00:00 2001
 From: Minh Nguyen <minhh2792.work@gmail.com>
 Date: Wed, 11 May 2022 15:56:31 +0000
 Subject: [PATCH] Clean up messages
@@ -43,6 +43,49 @@ index 6776099a7..fc0883a52 100644
              }
  
              if (this.aS()) {
+diff --git a/src/main/java/net/minecraft/server/EULA.java b/src/main/java/net/minecraft/server/EULA.java
+index 3623751bf..3b1047413 100644
+--- a/src/main/java/net/minecraft/server/EULA.java
++++ b/src/main/java/net/minecraft/server/EULA.java
+@@ -30,7 +30,7 @@ public class EULA {
+             properties.load(fileinputstream);
+             flag = Boolean.parseBoolean(properties.getProperty("eula", "false"));
+         } catch (Exception exception) {
+-            EULA.a.warn("Failed to load {}", file);
++            // EULA.a.warn("Failed to load {}", file);
+             this.b();
+         } finally {
+             IOUtils.closeQuietly(fileinputstream);
+@@ -57,6 +57,7 @@ public class EULA {
+             EULA.a.warn("Failed to save {}", this.b, exception);
+         } finally {
+             IOUtils.closeQuietly(fileoutputstream);
++            
+         }
+ 
+     }
+diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
+index 54a7166f8..3ac47e2fd 100644
+--- a/src/main/java/net/minecraft/server/MinecraftServer.java
++++ b/src/main/java/net/minecraft/server/MinecraftServer.java
+@@ -491,7 +491,7 @@ public abstract class MinecraftServer implements ICommandListener, Runnable, IAs
+         }
+ 
+         if (this.v != null) {
+-            MinecraftServer.LOGGER.info("Saving players");
++            // MinecraftServer.LOGGER.info("Saving players");
+             this.v.savePlayers();
+             this.v.u(isRestarting);
+             try { Thread.sleep(100); } catch (InterruptedException ex) {} // CraftBukkit - SPIGOT-625 - give server at least a chance to send packets
+@@ -532,7 +532,7 @@ public abstract class MinecraftServer implements ICommandListener, Runnable, IAs
+ 
+         // Spigot start
+         if (org.spigotmc.SpigotConfig.saveUserCacheOnStopOnly) {
+-            LOGGER.info("Saving usercache.json");
++            // LOGGER.info("Saving usercache.json");
+             this.Y.c(false); // Paper
+         }
+         // Spigot end
 -- 
 2.35.1
 
